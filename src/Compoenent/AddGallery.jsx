@@ -7,10 +7,23 @@ import GalleryContext from '../Context/GalleryContext'
 export default function AddGallery() {
    const Context = useContext(GalleryContext)
     const {AddGallery}=Context
+    const [File,setFile]=useState(null);
     
     const AddGallerys=(e)=>{
         e.preventDefault();
-        AddGallery(Gallery.Gallerytitle,Gallery.Gallerylink,Gallery.Gallerytype,Gallery.Gallerydesc);
+        // const formData = new FormData();
+        // formData.append('image', File);
+        // formData.append('eventDate', Gallery.eventDate);
+        // formData.append('eventTime', Gallery.eventTime);
+        // formData.append('title',Gallery.Gallerytitle);
+        // formData.append('content',Gallery.Gallerydesc);
+        // formData.append('status',"approved");
+        // formData.append('title',"1022446");
+
+
+        AddGallery(Gallery.Gallerytitle,Gallery.Gallerylink,Gallery.Gallerytype,Gallery.Gallerydesc,Gallery.eventDate,Gallery.eventTime,"approved","1022449");
+        // AddGallery(formData);
+
         setGallery({Gallerytitle:"",Gallerylink:"",Gallerytype:"",Gallerydesc:"",eventDate:"",eventTime:""});
         // window.location.reload();
     
@@ -49,7 +62,7 @@ export default function AddGallery() {
     // });
 
       const imageBase64 =await Base64Converter(file);
-
+setFile(file);
         setGallery({...Gallery,Gallerylink:imageBase64});
         console.log(imageBase64)
     }
@@ -99,7 +112,7 @@ export default function AddGallery() {
 
       <div className="mb-3 text-left">
       <label className="form-label" style={{textAlign:"left",color:"white"}} forhtml="form4Example2">Gallery Image</label>
-        <input type="file" accept=".jpeg, .png, .jpg" id="form4Example2" className="form-control" value={Gallery.Gallerylink} name='Gallerylink' onChange={handleImageUpload} />
+        <input type="file" accept=".jpeg, .png, .jpg" id="form4Example2" className="form-control" name='Gallerylink' onChange={handleImageUpload} />
         
       </div>
       {Gallery.Gallerylink && (
@@ -124,7 +137,7 @@ export default function AddGallery() {
       </select>
 
       <div className="form-floating mb-3">
-        <input type="text" id="form4Example3" className="form-control" name='Gallerydesc'value={Gallery.Gallerylink}  onChange={onChange} />
+        <input type="text" id="form4Example3" className="form-control" name='Gallerydesc'value={Gallery.Gallerydesc}  onChange={onChange} />
         <label className="form-label" style={{color:'black'}} forhtml="form4Example3">Event Description</label>
       </div>
 

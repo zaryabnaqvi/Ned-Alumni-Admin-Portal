@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef,useState } from 'react'
 import GalleryContext from '../Context/GalleryContext';
-import AddGallery from '../Compoenent/AddGallery';
 
 import GalleryItem from '../Compoenent/GalleryItem';
 
@@ -15,14 +14,15 @@ export default function Gallery() {
     const Context = useContext(GalleryContext);
     
     const [Gallery,setGallery]=useState({id:"",Gallerytitle:"",Gallerylink:"",Gallerytype:"",Gallerydesc:"",eventDate:"",eventTime:""})
+
     useEffect(()=>{
 
         Context.getGallery();
         // eslint-disable-next-line 
         
-},[Gallery])
+},[])
 
-    const Ref=useRef(null)
+    const ref=useRef(null)
     const RefClose =useRef(null)
 
     function Base64Converter(file) {
@@ -67,16 +67,16 @@ export default function Gallery() {
 
 
     const UpdateGallery=(currentGallery)=>{
-        setGallery({id:currentGallery._id,Gallerytitle:currentGallery.title,Gallerylink:currentGallery.Url,Gallerytype:currentGallery.choice,Gallerydesc:currentGallery.desc,eventDate:currentGallery.eventDate,eventTime:currentGallery.eventTime})
+        setGallery({id:currentGallery._id,Gallerytitle:currentGallery.title,Gallerylink:currentGallery.imagePath,Gallerytype:currentGallery.choice,Gallerydesc:currentGallery.content,eventDate:currentGallery.eventDate,eventTime:currentGallery.eventTime})
         console.log(currentGallery)
-        Ref.current.click();
+        ref.current.click();
         
 
     }
 
     
     const EditGallery=(e)=>{
-        Context.UpdateGallery(Gallery.id,Gallery.Gallerytitle,Gallery.Gallerylink,Gallery.Gallerytype,Gallery.Gallerydesc);
+        Context.UpdateGallery(Gallery.id,Gallery.Gallerytitle,Gallery.Gallerylink,Gallery.Gallerytype,Gallery.Gallerydesc,Gallery.eventDate,Gallery.eventTime);
         // window.location.reload();
         RefClose.current.click();
         
@@ -111,7 +111,7 @@ export default function Gallery() {
             {auth  && (<>
 
 
-<button type="button" ref={Ref} className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" ref={ref} className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Launch demo modal
 </button>
 
@@ -182,10 +182,11 @@ export default function Gallery() {
 
 
                     {Context.Gallery.length===0 && (<p>No Gallery to Show</p>)}
-                    {Context.Gallery.map((notes) => {
+                    {Context.Gallery.length!==0 && Context.Gallery.map((notes) => {
+                      if(notes.status==="approved")
                         return (
                             <div key={notes._id}>
-                                <GalleryItem title={notes.title} Url={notes.Url} desc={notes.desc} Gallery={notes} UpdateGallery={UpdateGallery}/>
+                                <GalleryItem title={notes.title} Url={notes.imagePath} desc={notes.content} Gallery={notes} UpdateGallery={UpdateGallery}/>
                             </div>
 
                         )
