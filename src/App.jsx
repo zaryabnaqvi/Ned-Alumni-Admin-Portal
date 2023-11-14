@@ -11,6 +11,9 @@ import Gallery from './Page/Gallery'
 import GalleryState from './context/GalleryState'
 import CreateEvents from './Page/CreateEvents'
 import ManageEvents from './Page/ManageEvents'
+import CreateOccassion from './Page/CreateOccassion'
+import CreateAlumniProject from './Page/CreateAlumniProjects'
+import CreatePotentialProject from './Page/CreatePotentialProjects'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -22,12 +25,26 @@ function App() {
 
   <Navbar/> 
   <Routes>
-    <Route path='/' element={<Home/>}/>
+    <Route index path='/' element={<Home/>}/>
     <Route path='/login' element={<Login/>}/>
     <Route path='/signup' element={<SignUp/>}/>
+
     <Route path='/events' element={<Gallery/>}/>
     <Route path='/createEvents' element={<CreateEvents/>}/>
     <Route path='/ManageEvents' element={<ManageEvents/>}/>
+
+    <Route path='/Occassion' element={<Gallery />} />
+    <Route path='/createOccassion' element={<CreateOccassion />} />
+    <Route path='/ManageOccassion' element={<ManageEvents />} />
+
+    <Route path='/AlumniProjects' element={<Gallery />} />
+    <Route path='/createAlumniProjects' element={<CreateAlumniProject />} />
+    <Route path='/ManageAlumniProjects' element={<ManageEvents />} />
+
+    <Route path='/PotentialProjects' element={<Gallery />} />
+    <Route path='/createPotentialProjects' element={<CreatePotentialProject />} />
+    <Route path='/ManagePotentialProjects' element={<ManageEvents />} />
+    
 
 
 

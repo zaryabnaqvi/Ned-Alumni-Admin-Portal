@@ -5,25 +5,25 @@ import { useEffect } from 'react'
 
 export default function ManageEvents() {
   const Context = useContext(GalleryContext)
-  useEffect(()=>{
+  useEffect(() => {
     Context.getGallery()
-  },[])
+  }, [])
   return (
-   
+
     <>
-    <div className='container m-5'>
+      <div className='container m-5'>
         <h2 className='h1 p-5'>Pending Events</h2>
-        {Context.Gallery.map((event)=>{
-          if(event.status === "pending"){
-return (
-  <AcceptanceEvent event={event}/>
-  
-)
+        {Context.Gallery.map((event) => {
+          if (event.status === "pending") {
+            return (
+              <AcceptanceEvent event={event} />
+
+            )
           }
         })
-    
-    }
-    </div>
+
+        }
+      </div>
     </>
   )
 }
