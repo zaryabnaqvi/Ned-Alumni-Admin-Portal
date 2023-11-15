@@ -34,7 +34,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 // app.options(cors())
-app.use(cors({origin:"http://127.0.0.1:5173"}))
+app.use(cors({origin:"http://localhost:5173"}))
 app.use(bodyParser.json({limit:"1000000000"}));
 app.use(bodyParser.urlencoded({ limit: '1000000000', extended: true })); 
 // app.use((req, res, next) => {

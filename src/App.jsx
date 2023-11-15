@@ -44,10 +44,7 @@ function App() {
     <Route path='/PotentialProjects' element={<Gallery />} />
     <Route path='/createPotentialProjects' element={<CreatePotentialProject />} />
     <Route path='/ManagePotentialProjects' element={<ManageEvents />} />
-    
-
-
-
+ 
   </Routes>
       
   </BrowserRouter>
